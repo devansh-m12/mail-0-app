@@ -5,8 +5,10 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { mockEmails, Email } from '../docs/mock-data';
 
 interface EmailCardProps {
@@ -18,6 +20,18 @@ function EmailCard({ email, onPress }: EmailCardProps) {
   const renderProfilePicture = () => {
     const { profilePicture } = email.sender;
 
+    // If there's a picture link, render the image
+    if (profilePicture.pictureLink) {
+      return (
+        <Image
+          source={{ uri: profilePicture.pictureLink }}
+          style={styles.profilePicture}
+          resizeMode="cover"
+        />
+      );
+    }
+
+    // Otherwise, render the fallback with background color and text/icon
     return (
       <View
         style={[
@@ -74,13 +88,10 @@ function EmailCard({ email, onPress }: EmailCardProps) {
             <View style={styles.senderRow}>
               <Text style={styles.senderName}>{email.sender.name}</Text>
               {email.sender.verified && (
-                <Text style={styles.verifiedIcon}>✓</Text>
+                <MaterialIcons name="verified" size={19} color="#1DA1F2" />
               )}
               <Text style={styles.timestamp}>{email.timestamp}</Text>
             </View>
-            <Text style={styles.subject} numberOfLines={2}>
-              {email.subject}
-            </Text>
             <Text style={styles.preview} numberOfLines={2}>
               {email.preview}
             </Text>
@@ -145,22 +156,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   emailCardContent: {
-    paddingVertical: 12,
+    paddingVertical: 8,
   },
   emailHeader: {
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
   profilePicture: {
-    width: 48,
-    height: 48,
+    width: 38,
+    height: 38,
     borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
   },
   profileIcon: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#FFFFFF',
   },
   profileText: {
@@ -182,27 +193,16 @@ const styles = StyleSheet.create({
     color: '#1F2937',
     marginRight: 4,
   },
-  verifiedIcon: {
-    fontSize: 14,
-    color: '#3B82F6',
-    marginRight: 8,
-  },
+
   timestamp: {
     fontSize: 14,
     color: '#9CA3AF',
     marginLeft: 'auto',
   },
-  subject: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#1F2937',
-    lineHeight: 20,
-    marginBottom: 4,
-  },
   preview: {
     fontSize: 14,
     color: '#6B7280',
-    lineHeight: 18,
+    lineHeight: 20,
     marginBottom: 8,
   },
   attachmentsContainer: {

@@ -10,6 +10,7 @@ export interface Email {
       backgroundColor: string;
       icon?: string;
       text?: string;
+      pictureLink?: string;
     };
     verified: boolean;
   };
@@ -27,42 +28,6 @@ export interface Email {
 
 export const mockEmails: Email[] = [
   {
-    id: '1',
-    sender: {
-      name: 'Rico Oktananda',
-      email: 'rico@example.com',
-      profilePicture: {
-        backgroundColor: '#3B82F6', // Blue
-        icon: '🕶️', // Sunglasses emoji as placeholder
-      },
-      verified: true,
-    },
-    subject: "We're refining our product and need your insights on our user experience (UX) design",
-    preview: "We're refining our product and need your insights on our user experience (UX) design. Your feedback has been invaluable in shaping our direction, and we'd love to get your thoughts on some new features we're considering...",
-    timestamp: '15:16',
-    attachments: [
-      {
-        name: 'designpr.pptx',
-        type: 'pptx',
-        icon: '📊',
-        color: '#DC2626', // Red
-      },
-      {
-        name: 'designdocs.word',
-        type: 'docx',
-        icon: '📄',
-        color: '#2563EB', // Blue
-      },
-      {
-        name: 'design.xlsx',
-        type: 'xlsx',
-        icon: '📈',
-        color: '#059669', // Green
-      },
-    ],
-    read: false,
-  },
-  {
     id: '2',
     sender: {
       name: 'Alicia from Deel',
@@ -70,6 +35,7 @@ export const mockEmails: Email[] = [
       profilePicture: {
         backgroundColor: '#8B5CF6', // Purple
         text: 'deel.',
+        pictureLink: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
       },
       verified: true,
     },
@@ -102,6 +68,7 @@ export const mockEmails: Email[] = [
       profilePicture: {
         backgroundColor: '#000000', // Black
         text: 'M',
+        pictureLink: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
       },
       verified: true,
     },
