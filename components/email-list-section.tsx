@@ -6,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
   Image,
+  ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -55,23 +56,38 @@ function EmailCard({ email, onPress }: EmailCardProps) {
 
     return (
       <View style={styles.attachmentsContainer}>
-        {email.attachments.map((attachment, index) => (
-          <View
-            key={index}
-            style={[
-              styles.attachmentPill,
-              { backgroundColor: `${attachment.color}20` },
-            ]}
-          >
-            <Text style={styles.attachmentIcon}>{attachment.icon}</Text>
-            <Text
-              style={[styles.attachmentName, { color: attachment.color }]}
-              numberOfLines={1}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.attachmentsScrollContainer}
+          nestedScrollEnabled={true}
+          scrollEnabled={true}
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
+        >
+          {email.attachments.map((attachment, index) => (
+            <View
+              key={`attachment-${index}`}
+              style={[
+                styles.attachmentPill,
+                { backgroundColor: '#FBF9FE' },
+              ]}
             >
-              {attachment.name}
-            </Text>
-          </View>
-        ))}
+              {attachment.icon.startsWith('data:') ? (
+                <Image source={{ uri: attachment.icon }} style={styles.attachmentImageIcon} />
+              ) : (
+                <Text style={styles.attachmentIcon}>{attachment.icon}</Text>
+              )}
+              <Text
+                style={[styles.attachmentName, { color: '#567860' }]}
+                numberOfLines={1}
+              >
+                {attachment.name}
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     );
   };
@@ -80,6 +96,8 @@ function EmailCard({ email, onPress }: EmailCardProps) {
     <TouchableOpacity
       onPress={() => onPress?.(email)}
       style={styles.emailCard}
+      activeOpacity={0.7}
+      delayPressIn={100}
     >
       <View style={styles.emailCardContent}>
         <View style={styles.emailHeader}>
@@ -95,7 +113,9 @@ function EmailCard({ email, onPress }: EmailCardProps) {
             <Text style={styles.preview} numberOfLines={2}>
               {email.preview}
             </Text>
-            {renderAttachments()}
+            <View style={styles.attachmentsWrapper}>
+              {renderAttachments()}
+            </View>
           </View>
         </View>
       </View>
@@ -169,6 +189,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
+    marginTop: 6
   },
   profileIcon: {
     fontSize: 18,
@@ -206,9 +227,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   attachmentsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
+    marginTop: 4,
+  },
+  attachmentsWrapper: {
+    flex: 1,
+  },
+  attachmentsScrollContainer: {
+    paddingRight: 16,
   },
   attachmentPill: {
     flexDirection: 'row',
@@ -217,9 +242,16 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 16,
     gap: 6,
+    marginRight: 8,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
   },
   attachmentIcon: {
     fontSize: 14,
+  },
+  attachmentImageIcon: {
+    width: 18,
+    height: 18,
   },
   attachmentName: {
     fontSize: 12,
