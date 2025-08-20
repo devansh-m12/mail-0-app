@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 interface EmailComposeButtonProps {
   onPress?: () => void;
@@ -13,11 +14,13 @@ export default function EmailComposeButton({ onPress }: EmailComposeButtonProps)
         style={styles.composeButton}
         activeOpacity={0.8}
       >
-        <Text style={styles.composeIcon}>✉️</Text>
-        <Text style={styles.plusIcon}>+</Text>
-        <View style={styles.composeTextContainer}>
-          <Text style={styles.composeText}>Compose</Text>
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons name="email-outline" size={24} color="white" />
+          <View style={styles.plusIconContainer}>
+            <Text style={styles.plusIcon}>+</Text>
+          </View>
         </View>
+        <Text style={styles.composeText}>Compose</Text>
       </TouchableOpacity>
     </View>
   );
@@ -26,47 +29,51 @@ export default function EmailComposeButton({ onPress }: EmailComposeButtonProps)
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 24,
+    bottom: 35,
     right: 24,
     zIndex: 1000,
   },
   composeButton: {
     backgroundColor: '#000000',
     borderRadius: 28,
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingHorizontal: 15,
+    paddingVertical: 9,
     flexDirection: 'row',
     alignItems: 'center',
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 2,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 6,
     minWidth: 140,
   },
-  composeIcon: {
-    fontSize: 20,
-    marginRight: 8,
+  iconContainer: {
+    position: 'relative',
+    marginRight: 12,
   },
-  plusIcon: {
-    position: 'absolute',
-    top: -2,
-    right: -2,
-    backgroundColor: '#000000',
-    borderRadius: 10,
-    width: 20,
-    height: 20,
-    textAlign: 'center',
-    lineHeight: 20,
-    fontSize: 14,
-    fontWeight: 'bold',
+  composeIcon: {
+    fontSize: 18,
     color: '#FFFFFF',
   },
-  composeTextContainer: {
-    marginLeft: 4,
+  plusIconContainer: {
+    position: 'absolute',
+    bottom: -2,
+    left: -2,
+    backgroundColor: '#000000',
+    borderRadius: 8,
+    width: 16,
+    height: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  plusIcon: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    lineHeight: 16,
   },
   composeText: {
     color: '#FFFFFF',

@@ -246,7 +246,7 @@ export interface AIBanner {
 
 export const aiBanner: AIBanner = {
   title: 'Upgrade with AI',
-  subtitle: 'more powerful Inbox',
+  subtitle: 'For more powerful Inbox',
   ctaText: 'Try AI',
   backgroundImage: 'futuristic-building-bg', // Asset reference
 };

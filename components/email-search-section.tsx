@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { aiBanner } from '../docs/mock-data';
+import Feather from '@expo/vector-icons/Feather';
+import Octicons from '@expo/vector-icons/Octicons';
 
 interface EmailSearchSectionProps {
   onSearchFocus?: () => void;
@@ -16,28 +19,30 @@ export default function EmailSearchSection({
   return (
     <View style={styles.container}>
       {/* Search Bar */}
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBar}>
-          <Text style={styles.searchIcon}>🔍</Text>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search mail0...."
-            placeholderTextColor="#9CA3AF"
-            onFocus={onSearchFocus}
-          />
-          <TouchableOpacity onPress={onFilterPress} style={styles.filterButton}>
-            <Text style={styles.filterIcon}>☰</Text>
-            <Text style={styles.filterCircle}>○</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.searchBar}>
+        <Feather name="search" size={18} color="#6B7280" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search mail0...."
+          placeholderTextColor="#9CA3AF"
+          onFocus={onSearchFocus}
+        />
+        <TouchableOpacity onPress={onFilterPress} style={styles.filterButton}>
+          <Octicons name="filter" size={18} color="#6B7280" />
+        </TouchableOpacity>
       </View>
 
-      {/* AI Upgrade Banner */}
-      <View style={styles.aiBanner}>
-        <View style={styles.aiBannerBackground}>
-          <Text style={styles.aiBackgroundIcon}>🏙️</Text>
-          <Text style={styles.aiBackgroundFoliage}>🌿</Text>
-        </View>
+      {/* AI Banner */}
+      <ImageBackground 
+        source={require('../assets/images/bgp.jpeg')} 
+        style={styles.aiBanner}
+      >
+        <LinearGradient
+          colors={['transparent', 'rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 0.8)']}
+          style={styles.gradientOverlay}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+        />
         <View style={styles.aiBannerContent}>
           <View style={styles.aiBannerText}>
             <Text style={styles.aiBannerTitle}>{aiBanner.title}</Text>
@@ -50,33 +55,30 @@ export default function EmailSearchSection({
             <Text style={styles.aiBannerButtonText}>{aiBanner.ctaText}</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 24,
-    paddingTop: 16,
-  },
-  searchContainer: {
-    marginBottom: 16,
+    backgroundColor: '#F6F7F6',
+
+    paddingTop: 8,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#FFFFFF',
     borderRadius: 25,
     paddingHorizontal: 16,
     paddingVertical: 12,
+    marginHorizontal: 15,
     borderWidth: 1,
     borderColor: '#E5E7EB',
+    marginBottom: 8,
   },
   searchIcon: {
-    fontSize: 18,
-    color: '#6B7280',
     marginRight: 12,
   },
   searchInput: {
@@ -86,78 +88,56 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
   filterButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginLeft: 12,
   },
-  filterIcon: {
-    fontSize: 16,
-    color: '#6B7280',
-    marginRight: 4,
-  },
-  filterCircle: {
-    fontSize: 8,
-    color: '#6B7280',
-    position: 'absolute',
-    top: -2,
-    right: -2,
-  },
   aiBanner: {
-    position: 'relative',
-    backgroundColor: '#F0F9FF',
-    borderRadius: 16,
+    height: 70,
     overflow: 'hidden',
-    minHeight: 120,
-    marginBottom: 8,
-  },
-  aiBannerBackground: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    width: '50%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    opacity: 0.1,
-  },
-  aiBackgroundIcon: {
-    fontSize: 80,
-  },
-  aiBackgroundFoliage: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
-    fontSize: 40,
   },
   aiBannerContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    height: '100%',
   },
   aiBannerText: {
     flex: 1,
   },
   aiBannerTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#1F2937',
+    fontWeight: '500',
+    color: '#FFFFFF',
     marginBottom: 4,
+    lineHeight: 24,
   },
   aiBannerSubtitle: {
     fontSize: 16,
-    color: '#6B7280',
+    color: '#FFFFFF',
+    lineHeight: 20,
+    fontWeight: '300',
   },
   aiBannerButton: {
-    backgroundColor: '#F3F4F6',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 25,
-    marginLeft: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    paddingHorizontal: 10,
+    paddingVertical:0,
+    borderRadius: 12,
+    marginLeft: 12,
+    minHeight: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   aiBannerButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#374151',
+    color: '#000000',
+  },
+  gradientOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 40,
   },
 });
