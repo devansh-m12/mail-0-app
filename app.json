@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "test-glass",
-    "slug": "test-glass",
+    "name": "v0-app",
+    "slug": "v0-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "testglass",
+    "scheme": "v0-app",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
