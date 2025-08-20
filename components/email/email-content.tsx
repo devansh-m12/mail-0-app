@@ -67,7 +67,7 @@ export default function EmailContent({ email, isCurrentEmail = true }: EmailCont
             styles.senderEmail,
             email.isReply && styles.replySenderEmail
           ]}>
-            From: {email.sender.email}
+            From: <Text style={{ color: '#000000' }}>{email.sender.email}</Text>
           </Text>
         </View>
       </View>

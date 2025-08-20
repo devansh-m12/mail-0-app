@@ -39,12 +39,6 @@ export default function EmailDetailBottom({
             </TouchableOpacity>
             <TouchableOpacity 
               style={styles.actionButton} 
-              onPress={() => onActionPress?.('filter')}
-            >
-              <Feather name="sliders" size={18} color="#6B7280" />
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={styles.actionButton} 
               onPress={() => onActionPress?.('trash')}
             >
               <Feather name="trash-2" size={18} color="#6B7280" />
@@ -125,7 +119,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 40,
   },
 
   actionButtons: {
@@ -135,7 +129,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     borderRadius: 20,
     marginRight: 2,
-    marginLeft: 30,
+    marginLeft: 25,
     flex: 1,
     maxHeight: 35,
     borderWidth: 1,
@@ -144,11 +138,11 @@ const styles = StyleSheet.create({
 
   actionButton: {
     flex: 1,
-    height: 44,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 22,
-    marginHorizontal: 2,
+    marginHorizontal: 5,
   },
 
   lightActionButtons: {

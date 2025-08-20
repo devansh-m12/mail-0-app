@@ -21,18 +21,19 @@ export default function EmailDetailHeader({
       {/* Navigation Bar */}
       <View style={styles.navigationBar}>
         <TouchableOpacity onPress={onBackPress} style={styles.navButton}>
-          <Feather name="arrow-left" size={20} color="#000" />
+          <Feather name="chevron-left" size={20} color="#6B7280" />
         </TouchableOpacity>
         
-        <Text style={styles.navigationTitle}>1 from 14,171</Text>
-        
-        <View style={styles.navButtons}>
-          <TouchableOpacity onPress={onPreviousPress} style={styles.navButton}>
-            <Feather name="arrow-left" size={16} color="#000" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onNextPress} style={styles.navButton}>
-            <Feather name="arrow-right" size={16} color="#000" />
-          </TouchableOpacity>
+        <View style={styles.rightSection}>
+          <Text style={styles.navigationTitle}>1 from 14,171</Text>
+          <View style={styles.navButtons}>
+            <TouchableOpacity onPress={onPreviousPress} style={styles.navButton}>
+              <Feather name="chevron-left" size={16} color="#6B7280" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onNextPress} style={styles.navButton}>
+              <Feather name="chevron-right" size={16} color="#6B7280" />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -58,10 +59,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  rightSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
   navigationTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
-    color: '#000000',
+    color: '#6B7280',
+    textAlign: 'right',
   },
   navButtons: {
     flexDirection: 'row',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
 import { mockEmails, Email } from '../docs/mock-emails';
 import { EmailDetailHeader, EmailContent, EmailDetailBottom } from '../components/email';
 
@@ -44,7 +45,7 @@ export default function EmailDetail({
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.content}>
         {/* Header Section */}
         <EmailDetailHeader
@@ -55,23 +56,31 @@ export default function EmailDetail({
         />
 
         {/* Email Content Section - Chat-like format */}
-        <ScrollView 
-          style={styles.scrollContainer}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollContent}
-        >
-          {conversationThread.map((conversationEmail, index) => (
-            <View key={conversationEmail.id} style={styles.emailWrapper}>
-              <EmailContent 
-                email={conversationEmail} 
-                isCurrentEmail={conversationEmail.id === email.id}
-              />
-              {index < conversationThread.length - 1 && (
-                <View style={styles.emailDivider} />
-              )}
-            </View>
-          ))}
-        </ScrollView>
+        <View style={styles.scrollWrapper}>
+          <ScrollView 
+            style={styles.scrollContainer}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContent}
+          >
+            {conversationThread.map((conversationEmail, index) => (
+              <View key={conversationEmail.id} style={styles.emailWrapper}>
+                <EmailContent 
+                  email={conversationEmail} 
+                  isCurrentEmail={conversationEmail.id === email.id}
+                />
+                {index < conversationThread.length - 1 && (
+                  <View style={styles.emailDivider} />
+                )}
+              </View>
+            ))}
+          </ScrollView>
+          <LinearGradient
+            colors={['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.4)', 'rgba(255, 255, 255, 0.6)', 'rgba(255, 255, 255, 0.8)']}
+            style={styles.bottomGradient}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        </View>
 
         {/* Bottom Action Section */}
         <EmailDetailBottom onActionPress={onActionPress} />
@@ -89,11 +98,15 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
+  scrollWrapper: {
+    flex: 1,
+    position: 'relative',
+  },
   scrollContainer: {
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 100, // Space for bottom actions
+    paddingBottom: 20, // Reduced space for bottom actions
   },
   emailWrapper: {
     marginBottom: 8,
@@ -103,5 +116,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5E7EB',
     marginHorizontal: 24,
     marginVertical: 16,
+  },
+  bottomGradient: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 150,
+    pointerEvents: 'none',
   },
 });
