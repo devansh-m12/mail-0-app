@@ -49,7 +49,7 @@ export default function EmailContent({ email, isCurrentEmail = true }: EmailCont
       <View style={styles.senderSection}>
         <ProfilePicture 
           profilePicture={email.sender.profilePicture} 
-          size={email.isReply ? 32 : 48}
+          size={35}
         />
         <View style={styles.senderInfo}>
           <View style={styles.senderRow}>
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   emailBodyText: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#374151',
     lineHeight: 24,
   },

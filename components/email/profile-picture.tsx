@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
   profilePicture: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    marginRight: 10,
+    marginTop: 5,
   },
   profileIcon: {
     color: '#FFFFFF',
