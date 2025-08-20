@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Email } from '../../docs/mock-emails';
 import ProfilePicture from './profile-picture';
@@ -27,11 +27,15 @@ export default function EmailContent({ email, isCurrentEmail = true }: EmailCont
           </View>
         </View>
         
-        <View style={styles.attachmentsGrid}>
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.attachmentsGrid}
+        >
           {email.attachments.map((attachment, index) => (
             <AttachmentCard key={`attachment-${index}`} attachment={attachment} />
           ))}
-        </View>
+        </ScrollView>
       </View>
     );
   };
@@ -82,7 +86,7 @@ export default function EmailContent({ email, isCurrentEmail = true }: EmailCont
           styles.emailBodyText,
           email.isReply && styles.replyBodyText
         ]}>
-          {email.isReply ? email.preview : `Hi Team,{'\n\n'}We're refining our product and need your insights on our user experience (UX) design. Please share any additional comments or suggestions. Your feedback is crucial in helping us exceed user expectations.{'\n\n'}Best regards,{'\n'}Rico`}
+          {email.isReply ? email.preview : `Hi Team,${'\n\n'}We're refining our product and need your insights on our user experience (UX) design. Please share any additional comments or suggestions. Your feedback is crucial in helping us exceed user expectations.${'\n\n'}Best regards,${'\n'}Dazzy`}
         </Text>
       </View>
 
@@ -186,5 +190,6 @@ const styles = StyleSheet.create({
   attachmentsGrid: {
     flexDirection: 'row',
     gap: 12,
+    paddingHorizontal: 24,
   },
 });
