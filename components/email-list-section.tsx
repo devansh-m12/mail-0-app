@@ -6,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { mockEmails, Email } from '../docs/mock-data';
 
 interface EmailCardProps {
@@ -118,6 +119,12 @@ export default function EmailListSection({
         refreshing={false}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
+      <LinearGradient
+        colors={['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.4)', 'rgba(255, 255, 255, 0.6)', 'rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 1)']}
+        style={styles.bottomGradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+      />
     </View>
   );
 }
@@ -126,7 +133,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    marginTop: 16,
+    marginTop: 0,
+    position: 'relative',
   },
   listContainer: {
     paddingHorizontal: 24,
@@ -222,5 +230,13 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#F3F4F6',
     marginVertical: 8,
+  },
+  bottomGradient: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 150,
+    pointerEvents: 'none',
   },
 });

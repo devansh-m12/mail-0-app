@@ -90,7 +90,7 @@ export default function EmailHeader({ onTabPress, onMenuPress }: EmailHeaderProp
                 {tab.label}
               </Text>
               {tab.count && (
-                <Text style={styles.tabCount}>({tab.count.toLocaleString()})</Text>
+                <Text style={styles.tabCount}>{tab.count.toLocaleString()}</Text>
               )}
             </View>
             {tab.isActive && <View style={styles.activeTabIndicator} />}
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   tabItem: {
     alignItems: 'center',
     paddingVertical: 8,
-    paddingHorizontal: 8,
+    paddingHorizontal: 12,
     position: 'relative',
     minWidth: 80,
   } as ViewStyle,
@@ -198,8 +198,8 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   } as TextStyle,
   tabCount: {
-    fontSize: 12,
-    color: '#6B7280',
+    fontSize: 13,
+    color: '#000000',
     marginLeft: 6,
   } as TextStyle,
   activeTabIndicator: {
