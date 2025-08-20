@@ -37,7 +37,7 @@ export const mockEmails: Email[] = [
       },
       verified: true,
     },
-    subject: 'We\'re refining our product and need your insights on our user experience (UX) design',
+    subject: 'We\'re Need your UX Feedback!',
     preview: 'We\'re refining our product and need your insights on our user experience (UX) design. We\'ve attached some design documents and would love to get your feedback on the overall user flow and interface elements...',
     timestamp: '15:16',
     attachments: [
